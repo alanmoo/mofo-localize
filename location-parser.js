@@ -4,7 +4,7 @@ var langmap = require(`langmap`);
 
 function getLocale(acceptLang, supportedLocales) {
   var langHeader = Parser.parse(acceptLang);
-  var langArray = langHeader.map(l => `${l.code}${l.region ? `-` + l.region : ``}` );
+  var langArray = langHeader.map(l => `${l.code}${l.region ? `-` + l.region.toUpperCase : ``}` );
 
   return bestLang(langArray, Object.keys(supportedLocales), `en-US`);
 }

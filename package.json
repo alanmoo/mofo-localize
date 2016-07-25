@@ -1,6 +1,6 @@
 {
   "name": "mofo-localize",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "All the little things you need to get your react-router based project to support localization",
   "main": "index.js",
   "scripts": {
