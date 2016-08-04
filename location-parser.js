@@ -1,12 +1,9 @@
-var Parser = require(`accept-language-parser`);
-var bestLang = require(`bestlang`);
+var acceptLanguage = require(`accept-language`);
 var langmap = require(`langmap`);
 
-function getLocale(acceptLang, supportedLocales) {
-  var langHeader = Parser.parse(acceptLang);
-  var langArray = langHeader.map(l => `${l.code}${l.region ? `-` + l.region.toUpperCase : ``}` );
-
-  return bestLang(langArray, Object.keys(supportedLocales), `en-US`);
+function getLocale(acceptedLanguages, supportedLocales) {
+    acceptLanguage.languages(Object.keys(supportedLocales));
+    return acceptLanguage.get(acceptedLanguages);
 }
 
 function getLocation(location) {
