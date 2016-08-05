@@ -1,6 +1,6 @@
 {
   "name": "mofo-localize",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "All the little things you need to get your react-router based project to support localization",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   "homepage": "https://github.com/alanmoo/mofo-localize#readme",
   "dependencies": {
     "accept-language": "^2.0.17",
-    "langmap": "0.0.13"
+    "locale-string": "1.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

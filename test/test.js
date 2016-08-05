@@ -32,7 +32,7 @@ describe('parseLocale with supportedLocale', function() {
         var result = mofoLocalize.parseLocale(clientLangs, path, supportedLocales);
         expect(result).to.deep.equal({locale:'es', redirect:''});
     });
-    
+
     it('should accept /es/foo and not redirect', function() {
         var result = mofoLocalize.parseLocale(clientLangs, '/es/foo', supportedLocales);
         expect(result).to.deep.equal({locale:'es', redirect:''});
@@ -41,6 +41,14 @@ describe('parseLocale with supportedLocale', function() {
     it('should accept /foo and redirect to /es/foo', function() {
         var result = mofoLocalize.parseLocale(clientLangs, '/foo', supportedLocales);
         expect(result).to.deep.equal({locale:'es', redirect: '/foo'});
+    });
+    it('should capitalize browser locales properly', function() {
+        var result = mofoLocalize.parseLocale('en-us', '/', supportedLocales);
+        expect(result).to.deep.equal({locale:'en-US', redirect:'/'});
+    });
+    it('should capitalize paths properly', function() {
+        var result = mofoLocalize.parseLocale('en-us', '/en-us/', supportedLocales);
+        expect(result).to.deep.equal({locale:'en-US', redirect:'/'});
     });
 
 });

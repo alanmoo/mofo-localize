@@ -1,5 +1,5 @@
 var acceptLanguage = require(`accept-language`);
-var langmap = require(`langmap`);
+var localeString = require(`locale-string`);
 
 function getLocale(acceptedLanguages, supportedLocales) {
     acceptLanguage.languages(Object.keys(supportedLocales));
@@ -23,7 +23,7 @@ module.exports = function(acceptLang, path, supportedLocales) {
   var locale = pathSplit[1];
   var redirect = ``;
 
-  if (!locale || !langmap[locale]) {
+  if (!locale || localeString.parse(locale) === undefined) {
     // No locale or not a valid locale.
     locale = getLocale(acceptLang, supportedLocales);
     redirect = path;
