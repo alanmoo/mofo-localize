@@ -2,8 +2,8 @@ var acceptLanguage = require(`accept-language`);
 var localeString = require(`locale-string`);
 
 function getLocale(acceptedLanguages, supportedLocales) {
-    acceptLanguage.languages(Object.keys(supportedLocales));
-    return acceptLanguage.get(acceptedLanguages);
+  acceptLanguage.languages(supportedLocales);
+  return acceptLanguage.get(acceptedLanguages);
 }
 
 function getLocation(location) {
@@ -15,7 +15,7 @@ function getLocation(location) {
  * @constructor
  * @param {array} acceptedLang - Array of acceptable languages. Usually based on client settings
  * @param {string} path - A URL path fragment.
- * @param {object} supportedLocales - An object whose keys are each locales, like: { "en-US":{}, "en-CA":{} }
+ * @param {object} supportedLocales - An array of locales your app supports
  */
 
 module.exports = function(acceptLang, path, supportedLocales) {
@@ -27,7 +27,7 @@ module.exports = function(acceptLang, path, supportedLocales) {
     // No locale or not a valid locale.
     locale = getLocale(acceptLang, supportedLocales);
     redirect = path;
-  } else if (!supportedLocales[locale]) {
+  } else if (supportedLocales.indexOf(locale) === -1) {
     // We have a valid locale, but we currently don't support it.
     locale = getLocale(acceptLang, supportedLocales);
     redirect = getLocation(path);
